@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, navigate, StaticQuery, graphql } from 'gatsby';
+import { navigate, StaticQuery, graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import Swipeable from 'react-swipeable';
 import Transition from '../components/transition';
+import Header from '../components/header';
 
-import './index.css';
-
-const Header = ({ name, title, date }) => (
-  <header>
-    <Link to="/1">
-      <span>{name}</span> — {title}
-    </Link>
-    <time>{date}</time>
-  </header>
-);
+import './base.css';
 
 class TemplateWrapper extends Component {
   NEXT = [13, 32, 39];
@@ -29,9 +21,15 @@ class TemplateWrapper extends Component {
   };
 
   navigate = ({ keyCode }) => {
-    const now = this.props.data.slide.index;
+      try {
+          let whatever = this.props.data.slide.index;
+      } catch (e) {
+          return false;
+      }
+      const now = this.props.data.slide.index;
     const slidesLength = this.props.slidesLength;
 
+      console.log(now);
     if (now) {
       if (keyCode === this.PREV && now === 1) {
         return false;
@@ -56,6 +54,13 @@ class TemplateWrapper extends Component {
   render() {
     const { location, children, site } = this.props;
 
+      console.log(this.props);
+      let content_id = 'slide';
+      if (typeof this.props.data == "undefined") {
+          content_id = 'page';
+      } else if (typeof this.props.data.exercise != "undefined") {
+          content_id = 'exercise';
+      }
     return (
       <div>
         <Helmet
@@ -71,7 +76,7 @@ class TemplateWrapper extends Component {
           onSwipedRight={this.swipeRight}
         >
           <Transition location={location}>
-            <div id="slide" style={{'width': '100%'}}>{children}</div>
+            <div id={content_id} style={{'width': '100%'}}>{children}</div>
           </Transition>
         </Swipeable>
       </div>

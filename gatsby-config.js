@@ -1,13 +1,20 @@
 module.exports = {
   siteMetadata: {
-    name: `Fabian Schultz`,
-    title: `Gatsby Deck`,
-    date: `July 30, 2018`,
+    name: `Zach Ingbretsen`,
+    title: `Intro to Docker`,
+    date: `May 2020`,
   },
   plugins: [
     `gatsby-plugin-layout`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-offline`,
+      {
+          resolve: `gatsby-source-filesystem`,
+          options: {
+              name: `exercises`,
+              path: `${__dirname}/src/exercises`,
+          },
+      },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
