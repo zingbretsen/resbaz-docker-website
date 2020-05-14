@@ -35,30 +35,74 @@ html {
   background-color: var(--bg);
 }
 
-#page, #exercise {
+.page, .exercise {
   /* overflow: hidden; */
 
   /* position: absolute; */
+  layout: flex;
   position: relative;
-  top: 20px;
-  width: 100vw;
-  height: 100vh;
+  top: 80px;
+  margin-left: 160px; /* Same as the width of the sidebar */
+  margin-bottom: 50px; /* Same as the width of the sidebar */
+  padding-bottom: 50px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+  width: 100%;
+  height: 100%;
   padding-left: 1rem;
+  font-size: 1rem;
   /* padding: 1rem; */
 
+  overflow-y: auto; /* Disable horizontal scroll */
   /* text-align: center; */
 
 }
 
-#exercise code {
+.exercise code {
   font-size: 0.75rem;
 }
 
-#page p {
+.exercise {
+  width: 85vw;
+}
+
+.exercise .sidebar {
+  layout: flex;
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  top: 40px; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding: 20px;
+  padding-top: 50px;
+
+  font-size: 0.75rem;
+}
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.page p {
   font-size: 1rem;
 }
 
-#slide {
+.slide {
   display: flex;
   overflow: hidden;
   justify-content: center;
@@ -73,9 +117,26 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 
-#slide ul {
-    text-align: left;
-    margin-left: 32px;
+code {
+  background-color: #00558922;
+  padding: 20px;
+  display: block;
+  white-space: pre-wrap;
+
+  text-align: left;
+  font-size: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+code.language-output {
+  
+  background-color: #55008922;
+}
+.slide ul {
+  text-align: left;
+  margin-left: 32px;
 }
 
 a {
@@ -135,13 +196,6 @@ pre {
   /* color: var(--accent); */
 }
 
-code {
-  /* font-family: menlo, monospace; */
-  /* font-size: 90%; */
-    display: block;
-    white-space: pre-wrap
-}
-
 a:hover {
   color: var(--accent);
 }
@@ -176,7 +230,8 @@ header {
   align-items: center;
 
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
+  height: 80px;
 
   user-select: none;
 }

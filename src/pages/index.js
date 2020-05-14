@@ -7,9 +7,9 @@ class Index extends Component {
       return (
           <>
             <h3>Getting started with Docker</h3>
-            <p>These are the resources for the ResBaz Tucson workshop "Getting started with Docker"</p>
+          <p>These are the resources for the <a target="_blank" rel="noopener noreferrer" href="http://researchbazaar.arizona.edu/resbaz/resbazTucson2020/">ResBaz Tucson</a> workshop "Getting started with Docker"</p>
             <h4>Preprequisites</h4>
-            <p>Before the workshop, please install Docker and ensure that it works on your computer. See <Link to="/exercises">exercise 0</Link></p>
+            <p>Before the workshop, please install Docker and ensure that it works on your computer. See <Link to="/exercises/0">exercise 0</Link></p>
           </>
       )
   }

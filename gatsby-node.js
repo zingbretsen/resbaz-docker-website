@@ -53,9 +53,6 @@ exports.createPages = ({ actions, createContentDigest, createNodeId, graphql }) 
       const slides = result.data.allMarkdownRemark.edges.filter(n => n.node.frontmatter.pagetype == 'slide');
       slides.sort((a, b) => a.node.fileAbsolutePath > b.node.fileAbsolutePath ? 1 : -1);
 
-      const exercises = result.data.allMarkdownRemark.edges.filter(n => n.node.frontmatter.pagetype == 'exercise');
-      exercises.sort((a, b) => a.node.fileAbsolutePath > b.node.fileAbsolutePath ? 1 : -1);
-
       // Splits slides apart by hr (---)
       const nodes = slides.flatMap((s) => s.node.html.split('<hr>').map((html) => ({
           node: s.node, html
@@ -87,22 +84,31 @@ exports.createPages = ({ actions, createContentDigest, createNodeId, graphql }) 
           });
       });
 
+
       // Create nodes and pages for EXERCISES
-      exercises.forEach(({ node }, index) => {
+      const exercises = result.data.allMarkdownRemark.edges.filter(n => n.node.frontmatter.pagetype == 'exercise');
+      exercises.sort((a, b) => a.node.fileAbsolutePath > b.node.fileAbsolutePath ? 1 : -1);
+
+      const ex_nodes = exercises.flatMap((s) => s.node.html.split('<hr>').map((html) => ({
+          node: s.node, html
+      })));
+
+      ex_nodes.forEach(({ node, html }, index) => {
           return createNode({
               id: createNodeId(`${node.id}_${index} >>> Exercise`),
               parent: node.id,
               children: [],
               internal: {
                   type: `Exercise`,
-                  contentDigest: createContentDigest(node.html),
+                  contentDigest: createContentDigest(html),
               },
-              html: node.html,
+              html: html,
               index: index,
+              title: "Exercise",
           });
       });
 
-      exercises.forEach((exercise, index) => {
+      ex_nodes.forEach((exercise, index) => {
           createPage({
               path: `/exercises/${index}`,
               component: exerciseTemplate,
@@ -126,6 +132,7 @@ exports.sourceNodes = ({ actions }) => {
     type Exercise implements Node {
       html: String
       index: Int
+      title: String
     }
   `);
 };
