@@ -26,6 +26,7 @@ exports.onCreatePage = ({ page, actions }) => {
 exports.createPages = ({ actions, createContentDigest, createNodeId, graphql }) => {
     const { createPage, createNode } = actions;
     const slideTemplate = path.resolve(`src/templates/slide.js`);
+    const lessonTemplate = path.resolve(`src/templates/lesson.js`);
     const exerciseTemplate = path.resolve(`src/templates/exercise.js`);
 
     return graphql(`
@@ -57,6 +58,32 @@ exports.createPages = ({ actions, createContentDigest, createNodeId, graphql }) 
       const nodes = slides.flatMap((s) => s.node.html.split('<hr>').map((html) => ({
           node: s.node, html
       })));
+
+      slides.forEach(({ node }, index) => {
+          createNode({
+              id: createNodeId(`lesson_${node.id}_${index + 1} >>> Lesson`),
+              parent: node.id,
+              children: [],
+              internal: {
+                  type: `Lesson`,
+                  contentDigest: createContentDigest(node.html),
+              },
+              html: node.html,
+              index: index,
+          });
+      });
+
+      slides.forEach((slide, index) => {
+          createPage({
+              path: `/lessons/${index}`,
+              component: lessonTemplate,
+              context: {
+                  index: index,
+                  absolutePath: process.cwd() + `/src/lesson#${index + 1}`,
+              },
+          });
+      });
+
 
       // Create nodes and pages for SLIDES
       nodes.forEach(({ node, html }, index) => {
@@ -130,6 +157,13 @@ exports.sourceNodes = ({ actions }) => {
   `);
     actions.createTypes(`
     type Exercise implements Node {
+      html: String
+      index: Int
+      title: String
+    }
+  `);
+    actions.createTypes(`
+    type Lesson implements Node {
       html: String
       index: Int
       title: String

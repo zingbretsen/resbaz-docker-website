@@ -27,6 +27,7 @@ class TemplateWrapper extends Component {
         const now = this.props.data.slide.index;
         const slidesLength = this.props.slidesLength;
 
+        console.log(`now: ${now} | length: ${slidesLength}`);
         if (now) {
             if (keyCode === this.PREV && now === 1) {
                 return false;
