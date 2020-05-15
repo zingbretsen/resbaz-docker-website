@@ -11,7 +11,15 @@ Image credit: Event Horizon Telescope Collaboration
 
 ---
 
-### Starting a docker container
+## Terminology
+### Image
+The pre-packaged environment, data, and code.
+### Container
+An instance of an image that can execute code.
+
+---
+
+## Starting a docker container
 ```bash
 docker run hello-world
 ```

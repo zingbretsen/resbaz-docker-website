@@ -16,7 +16,7 @@ If this is your first time running this command you should see something like:
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 0e03bdcc26d7: Pull complete 
-Digest: sha256:8e3114318a995a1ee497790535e7b88365222a21771ae7e53687ad76563e8e76
+Digest: sha256:8e3114318...
 Status: Downloaded newer image for hello-world:latest
 ```
 

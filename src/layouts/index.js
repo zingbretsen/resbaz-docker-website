@@ -55,6 +55,8 @@ class TemplateWrapper extends Component {
         let content_id = 'page';
         if (/exercise/.test(location.pathname)) {
             content_id = 'exercise';
+        } else if (/lessons/.test(location.pathname)) {
+                content_id = 'lesson';
         } else if (/^\/[0-9]+\/?$/.test(location.pathname)) {
             content_id = 'slide';
         }     return (

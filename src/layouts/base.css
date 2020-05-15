@@ -35,19 +35,21 @@ html {
   background-color: var(--bg);
 }
 
-.page, .exercise {
+.exercise {
+  margin-left: 160px; /* Same as the width of the sidebar */
+}
+.page, .exercise, .lesson {
   /* overflow: hidden; */
 
   /* position: absolute; */
-  layout: flex;
+  /* layout: flex; */
   position: relative;
   top: 80px;
-  margin-left: 160px; /* Same as the width of the sidebar */
-  margin-bottom: 50px; /* Same as the width of the sidebar */
-  padding-bottom: 50px; /* Same as the width of the sidebar */
-  padding: 0px 10px;
-  width: 100%;
-  height: 100%;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  /* padding: 0px 10px; */
+  /* width: 100%; */
+  /* height: 100%; */
   padding-left: 1rem;
   font-size: 1rem;
   /* padding: 1rem; */
@@ -57,12 +59,11 @@ html {
 
 }
 
-.exercise code {
+.exercise code, .lesson code {
   font-size: 0.75rem;
 }
-
-.exercise {
-  width: 85vw;
+.exercise, .lesson {
+  width: 75vw;
 }
 
 .exercise .sidebar {
@@ -119,6 +120,9 @@ html {
 
 code {
   background-color: #00558922;
+}
+
+pre code {
   padding: 20px;
   display: block;
   white-space: pre-wrap;
