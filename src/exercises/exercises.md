@@ -62,7 +62,7 @@ As they suggest, try running
 docker run -it ubuntu bash
 ```
 
-This will download the Ubuntu image to your computer and will start a container running a bash shell. You can interact with this like any normal Ubuntu install! Try running 'ps', though. What processes are running inside the container?
+This will download the Ubuntu image to your computer and will start a container running a bash shell. You can interact with this like any normal Ubuntu install! Try running `ps aux`, though. What processes are running inside the container?
 
 ---
 
