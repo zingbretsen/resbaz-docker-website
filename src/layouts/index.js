@@ -59,7 +59,8 @@ class TemplateWrapper extends Component {
                 content_id = 'lesson';
         } else if (/^\/[0-9]+\/?$/.test(location.pathname)) {
             content_id = 'slide';
-        }     return (
+        }
+        return (
             <>
               <Helmet
                 title={`${site.siteMetadata.title} — ${site.siteMetadata.name}`}

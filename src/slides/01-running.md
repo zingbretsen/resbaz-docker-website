@@ -12,6 +12,8 @@ Image credit: Event Horizon Telescope Collaboration
 ---
 
 ## Terminology
+### Dockerfile
+The plaintext instructions of how to build an image (configuration as code)
 ### Image
 The pre-packaged environment, data, and code.
 ### Container
@@ -48,12 +50,13 @@ To generate this message, Docker took the following steps:
     etc.
 ```
 ---
-### Exercise 0
+## Exercise 0
+Run the hello-world example:
 [Try it yourself](/exercises/0)
 
 ---
 
-## Essential Commands
+## Structure of Docker Commands
 ```
 docker <command> [subcommand] [options]
 
@@ -65,6 +68,57 @@ docker container stop <containername>
 ```
 
 ---
+
+### Command flags
+#### Single Character Flags
+These are prefaced with a single dash. The following runs Ubuntu interactively (`-i`) and "[a]llocates a psudo-tty" (`-t`). This means it will give you a prompt that you can interact with.
+```
+docker run -i -t ubuntu
+```
+
+Single character flags can often be combined together. The following command is the same as the previous one:
+```
+docker run -it ubuntu
+```
+
+#### Multiple Character Flags
+These are prefaced with two dashes:
+```
+docker run --rm hello-world
+```
+
+In this case, `--rm` stands for "remove", not for `-r -m`.
+
+---
+
+#### Equivalent commands
+Most single character flags have more verbose multiple character versions:
+```
+  -d, --detach                         Run container in background and
+                                       print container ID
+  -e, --env list                       Set environment variables
+  -i, --interactive                    Keep STDIN open even if not attached
+  -p, --publish list                   Publish a container's port(s) to
+                                       the host
+  -t, --tty                            Allocate a pseudo-TTY
+  -v, --volume list                    Bind mount a volume
+```
+
+---
+
+#### Flags with arguments
+Most flags in Docker take additional arguments, and many can be used multiple times in the same command. For example, you may want to set many environment variables or mount multiple volumes into your container:
+```
+docker run --rm -e NAME=ZACH -e CONFERENCE=RESBAZ \
+-p 8787:8787 \
+-v /home/zach/examples:/examples \
+-v /home/zach/more_examples:/more_examples \
+my-fancy-image
+```
+
+---
+
+## Common Command Cheatsheet
 
 ### docker run
 `docker run <image>` will try to run the specified image. It first looks to see if you already have that image locally. If you do not already have the image, it will try to pull it from Docker Hub.

@@ -68,10 +68,10 @@ html {
 
 .exercise .sidebar {
   layout: flex;
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 160px; /* Set the width of the sidebar */
+  /* height: 100%; /\* Full-height: remove this if you want "auto" height *\/ */
+  /* width: 10vw; /\* Set the width of the sidebar *\/ */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  top: 40px; /* Stay at the top */
+  top: 75px; /* Stay at the top */
   left: 0;
   overflow-x: hidden; /* Disable horizontal scroll */
   padding: 20px;
@@ -110,7 +110,7 @@ html {
   align-items: center;
 
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   padding: 1rem;
 
   text-align: center;
@@ -200,8 +200,12 @@ pre {
   /* color: var(--accent); */
 }
 
-a:hover {
+a {
   color: var(--accent);
+}
+
+a:hover {
+  color: var(--meta);
 }
 
 h1 {
@@ -240,7 +244,7 @@ header {
   user-select: none;
 }
 
-header a,
+header a, nav a,
 time {
   text-decoration: none;
 

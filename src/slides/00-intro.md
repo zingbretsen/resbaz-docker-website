@@ -32,15 +32,25 @@ Docker lets you package up your code along with the environment it needs to run 
 
 ---
 
-## Is it just a VM?
-No
+## Not Just a VM
+Virtual machines are another way to build an environment for your code to run in, but VMs:
+- Use a lot of resources
+- Are slow to start
+- More difficult to share
+- Can't generally be re-created from a single file
 
 ---
 
 ## Benefits of Docker
-- Compatibility
-- Standardization
-- Portability
-- Isolation
-- Scalability
-- Reproducibility
+- Docker images can be run on most OSes, and will work exactly the same across systems.
+- You can create a Docker image on Windows and it will run exactly the same on a Linux of Mac computer, or even up in the cloud.
+- Images can be entirely self contained, and thus not impacted by your local system configuration.
+- Images will always run exactly the same--The same inputs will yield the same outputs.*
+*Unless you are have non-deterministic code
+
+---
+
+## How does it work?
+Docker runs as a daemon on your computer. You will mostly interact with it via the Docker CLI.
+
+Docker ships with a Linux kernel, which is shared across all of your running containers. This allows Docker to run multiple containers without the overhead that running multiple VMs would have.

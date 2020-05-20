@@ -1,21 +1,64 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+    Navbar,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+} from 'reactstrap';
 
 class Header extends React.Component {
     render() {
         return (
-            <header>
-              <nav >
-                <Link to="/"> Home </Link>
-                <Link to="/exercises"> Exercises </Link>
-                <Link to="/lessons/0">Why Docker?</Link>
-                <Link to="/lessons/1">Running Images</Link>
-                <Link to="/lessons/2">Building Images</Link>
-                <Link to="/lessons/3">More Options</Link>
-                <Link to="/lessons/4">Docker Compose</Link>
-                <Link to="/1"> Slides </Link>
-              </nav>
-            </header>
+            <div>
+              <Navbar color="light" light expand="md">
+                <NavbarBrand >
+                  <Link to="/" className="nav-link"> Intro to Docker </Link>
+                </NavbarBrand>
+                <Nav className="mr-auto" navbar>
+                  <NavItem>
+                    <Link to="/exercises" className="nav-link"> Exercises </Link>
+                  </NavItem>
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                      Lessons
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <Link to="/lessons/0">
+                      <DropdownItem>
+                          Why Docker?
+                      </DropdownItem>
+                      </Link>
+                      <Link to="/lessons/1">
+                      <DropdownItem>
+                        Running Images
+                      </DropdownItem>
+                      </Link>
+                        <Link to="/lessons/2">
+                          <DropdownItem>
+                          Building Images
+                      </DropdownItem>
+                        </Link>
+                        <Link to="/lessons/3">
+                          <DropdownItem>
+                          More Options
+                      </DropdownItem>
+                        </Link>
+                        <Link to="/lessons/4">
+                          <DropdownItem>
+                          Docker Compose
+                      </DropdownItem>
+                        </Link>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </Nav>
+              </Navbar>
+            </div>
         );
     }
 }
