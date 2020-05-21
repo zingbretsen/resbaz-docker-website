@@ -99,6 +99,8 @@ There are a few details to keep in mind when building a Dockerfile:
 - What order you run your commands in
 - Layers only add, never subtract
 
+See Docker's list of [best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) for more information.
+
 ---
 
 ### Build Context
