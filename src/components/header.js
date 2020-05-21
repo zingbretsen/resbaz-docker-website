@@ -54,6 +54,11 @@ class Header extends React.Component {
                           Docker Compose
                       </DropdownItem>
                         </Link>
+                      <Link to="/lessons/5">
+                        <DropdownItem>
+                          Sharing Images
+                        </DropdownItem>
+                      </Link>
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </Nav>
