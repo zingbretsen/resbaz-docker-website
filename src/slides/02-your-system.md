@@ -52,6 +52,8 @@ A bind mount:
 docker run -it --mount 'type=bind,src=/tmp,target=/hosttmp' ubuntu
 ```
 
+---
+
 ### docker cp
 If you did not mount anything into your container, but you still want to retrieve data from inside your container (or put some data into your container), all is not lost! `docker cp` will let you copy data into or out of a running (or stopped!) container:
 
@@ -59,6 +61,8 @@ If you did not mount anything into your container, but you still want to retriev
 docker cp /path/to/localsrc  <name of container>:/path/to/containerdest
 docker cp <name of container>:/path/to/containersrc /path/to/localdest
 ```
+
+---
 
 ## Networking
 You will often want to run a service in a container that you interact with via a port on your network. Some examples of this are:

@@ -66,8 +66,12 @@ Much like how you can push to Docker Hub, you can push your images to other regi
 - GCP Container Registry
 - Privately hosted registry
 
+---
+
 ## Exporting the Image
 Docker provides a way to save one or more images as a tar archive, which you can then send to a colleague.
+
+---
 
 ### Saving images
 If you want to share the images directly, you can save the images to an archive, which you can then share like any other file:
@@ -75,8 +79,14 @@ If you want to share the images directly, you can save the images to an archive,
 docker save -o <filename>.tar image1 image2 imageN
 ```
 
+---
+
 ### Loading images
 To load the images back in on the new system, you print out the contents of the archive and pipe that into the docker load command:
 ```
 cat <filename>.tar | docker load
 ```
+
+---
+
+# FIN
