@@ -18,12 +18,6 @@
 
 body,
 html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-size: var(--base);
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: 'calt', 'liga', 'hist', 'onum', 'pnum';
-
   overflow: auto;
 
   width: 100%;
@@ -104,6 +98,12 @@ html {
 }
 
 .slide {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: var(--base);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'calt', 'liga', 'hist', 'onum', 'pnum';
+
   display: flex;
   overflow: hidden;
   justify-content: center;
@@ -208,14 +208,24 @@ a:hover {
   color: var(--meta);
 }
 
-h1 {
+h1.slide {
   font-size: 200%;
 
   margin-bottom: 0.5rem;
 }
 
-h2 {
+h2.slide {
+  font-size: 140%;
+
+  margin-bottom: 0.5rem;
+}
+h3.slide {
   font-size: 120%;
+
+  margin-bottom: 0.5rem;
+}
+h4.slide {
+  font-size: 100%;
 
   margin-bottom: 0.5rem;
 }
