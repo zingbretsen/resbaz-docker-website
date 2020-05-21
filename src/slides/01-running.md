@@ -70,6 +70,10 @@ docker container stop <containername>
 ---
 
 ### Command flags
+There are many optional flags that you can pass to Docker to modify the behavior of Docker commands.
+
+---
+
 #### Single Character Flags
 These are prefaced with a single dash. The following runs Ubuntu interactively (`-i`) and "[a]llocates a psudo-tty" (`-t`). This means it will give you a prompt that you can interact with.
 ```
@@ -80,6 +84,8 @@ Single character flags can often be combined together. The following command is 
 ```
 docker run -it ubuntu
 ```
+
+---
 
 #### Multiple Character Flags
 These are prefaced with two dashes:
@@ -94,14 +100,12 @@ In this case, `--rm` stands for "remove", not for `-r -m`.
 #### Equivalent commands
 Most single character flags have more verbose multiple character versions:
 ```
-  -d, --detach                         Run container in background and
-                                       print container ID
-  -e, --env list                       Set environment variables
-  -i, --interactive                    Keep STDIN open even if not attached
-  -p, --publish list                   Publish a container's port(s) to
-                                       the host
-  -t, --tty                            Allocate a pseudo-TTY
-  -v, --volume list                    Bind mount a volume
+-d, --detach           Run container in background and print container ID
+-e, --env list         Set environment variables
+-i, --interactive      Keep STDIN open even if not attached
+-p, --publish list     Publish a container's port(s) to the host
+-t, --tty              Allocate a pseudo-TTY
+-v, --volume list      Bind mount a volume
 ```
 
 ---
@@ -158,8 +162,9 @@ Try running `docker container` to see all the subcommands.
   start       Start one or more stopped containers
   stop        Stop one or more running containers
 ```
-
-You can also remove containers by name or by id.
+---
+#### docker container rm
+Much like images, you can also remove containers by name or by id.
 ```
 docker container rm <containername>
 docker rm <containername>

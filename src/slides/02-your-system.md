@@ -4,7 +4,7 @@ author: "Zach Ingbretsen"
 pagetype: "slide"
 ---
 
-# Section 3: Working with Your System
+# Section 2: Working with Your System
 You will usually want to use files on your computer inside your Docker container or use applications running inside your container on your computer. Even though one of the benefits of containers is the ability to isolate your code and environment from the rest of your system, that doesn't mean that you can't have some interaction between your system and your containers!
 
 ## Filesystem
@@ -61,13 +61,14 @@ docker cp <name of container>:/path/to/containersrc /path/to/localdest
 ```
 
 ## Networking
-
-### Ports
 You will often want to run a service in a container that you interact with via a port on your network. Some examples of this are:
 - Running RStudio in Docker and accessing it via your web browser
 - Ditto for Jupyter Notebooks
 - Running a Flask app in a container sending POST requests to it
 
+---
+
+### Ports
 Docker, by default, will not let you connect to a port in the container unless you explicitly map it to a port on your computer.
 
 By default RStudio launches on port 8787:
@@ -75,4 +76,29 @@ By default RStudio launches on port 8787:
 docker run -p 8787:8787 rocker/rstudio
 ```
 
-### Networks
+---
+
+### Remapping Ports
+You do not have to keep the original port number that the service uses inside your container. You can change the local port in your run command. This is useful if you are spinning up multiple services that might ordinarily listen on the same port.
+
+The Flask development server usually runs on port 5000. The following command will let you spin up two flask containers, one on port 5000 and one on port 5001:
+```
+docker run -p 5000:5000 flaskapp1
+docker run -p 5001:5000 flaskapp2
+```
+
+---
+
+## Environment Variables
+When you run a container, you can pass in environment variables as key=value pairs to the container:
+```
+docker run -e <key>=<value> <image>
+```
+
+NOTE: This will likely stay in your shell's history. You may not want to type secrets directly in to the command prompt.
+
+Docker can also use environment variables from your system. Simply pass in the key with no value, and Docker will try to retrieve the value from your environment:
+```
+docker run -e YOURENVVAR <image>
+```
+

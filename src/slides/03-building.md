@@ -4,7 +4,7 @@ author: "Zach Ingbretsen"
 pagetype: "slide"
 ---
 
-# Section 2: Building Images
+# Section 3: Building Images
 ## Dockerfile
 You describe all of the steps required to create your image in a [Dockerfile](https://docs.docker.com/engine/reference/builder/). You will include all of the steps required to create and configure your image.
 
