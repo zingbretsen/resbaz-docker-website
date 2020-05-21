@@ -91,16 +91,57 @@ local image.
 docker run pyjoke
 ```
 
+---
+
 ## Important Details
+There are a few details to keep in mind when building a Dockerfile:
+- What is the directory
+- What order you run your commands in
+- Layers only add, never subtract
+
+---
+
 ### Build Context
+When you run `docker build`, Docker sends everything in the directory to the Docker daemon, even if those files are not used in your image.
+
+Try to limit the number and size of the files that are in the directory you are building.
+
+You must have all the files you need in the directory you are building--The build agent will not have access to other files on your system.
 
 ---
 
 ### Layer Caching
-The order of the commands in your Dockerfile matters! Docker will cache each command that you run in your Dockerfile.
-The first time you docker build, Docker will run every line.
-Each subsequent tome that you build, Docker will find the first change in your Dockerfile and build from there.
+The order of the commands in your Dockerfile matters! Docker will cache each command that you run in your Dockerfile. This speeds up the build process, but can lead to some sneaky gotchas.
+
+The first time you docker build, Docker will run every line. Each subsequent time that you build, Docker will find the first change in your Dockerfile and build from there. This includes changes to the Dockerfile or changes to files that are copied in to your image.
 
 ---
 
 ### What is the right order?
+Generally speaking, you should put commands for things that change less frequently towards the top of the file, and things that change more frequently towards the bottom of the file.
+
+Install your system libraries towards the top.
+
+Copy in your code towards the bottom.
+
+---
+
+### Installing system packages
+Because of the layer caching in Docker, you will want to update your repositories in the same command as installing packages:
+```
+RUN apt-get update && \
+    apt-get install -y vim
+```
+
+Do not issue those as two separate `RUN` commands.
+
+---
+
+### Size Considerations
+If you create files in one command, and delete them in a subsequent command, this will not reduce the size of your image. When possible, try to clean up after yourself as you go along.
+
+```
+RUN apt-get update && \
+    apt-get install -y vim && \
+    rm /etc/apt/sources.list.d/*
+```
